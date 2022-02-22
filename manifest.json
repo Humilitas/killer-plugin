@@ -1,0 +1,68 @@
+{
+  "name": "killer-plugin",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "description": "kill disturbing content!",
+  "browser_action": {
+    "default_title": "killer-plugin"
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "background": {
+    "scripts": [
+      "hot-reload.js",
+      "background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.zhihu.com/*"
+      ],
+      "js": [
+        "lib/jquery.min.js",
+        "zhihu.js"
+      ],
+      "css": [
+      ],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "*://*.douban.com/*"
+      ],
+      "js": [
+        "lib/jquery.min.js",
+        "douban.js"
+      ],
+      "css": [
+      ],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "*://*.freecodecamp.org/news/*"
+      ],
+      "js": [
+        "lib/jquery.min.js",
+        "fcc-news.js"
+      ],
+      "css": [
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": [
+    "<all_urls>",
+    "cookies",
+    "webRequest",
+    "notifications",
+    "webRequestBlocking",
+    "tabs",
+    "activeTab",
+    "contextMenus",
+    "storage",
+    "*://*.zhihu.com/*",
+    "*://*.douban.com/*",
+    "*://*.freecodecamp.org/news/*"
+  ]
+}
