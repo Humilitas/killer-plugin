@@ -1,0 +1,11 @@
+.my-btn {
+    position: absolute;
+    top: 1em;
+    left: 300px;
+    background: #006aff;
+    color: #fff;
+    padding: .5em 2em;
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+}

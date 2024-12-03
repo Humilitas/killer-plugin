@@ -1,19 +1,26 @@
 {
   "name": "killer-plugin",
   "version": "1.0.0",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "description": "kill disturbing content!",
-  "browser_action": {
+  "action": {
     "default_title": "killer-plugin"
   },
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "background": {
-    "scripts": [
-      "hot-reload.js",
-      "background.js"
-    ]
+    "service_worker": "background.js"
   },
   "content_scripts": [
+    {
+      "matches": [
+        "*://*/zentao/task-view-*.html"
+      ],
+      "js": [
+        "lib/jquery.min.js",
+        "zentao.js"
+      ],
+      "css": ["zentao.css"],
+      "run_at": "document_end"
+    },
     {
       "matches": [
         "*://*.zhihu.com/*"
@@ -22,8 +29,7 @@
         "lib/jquery.min.js",
         "zhihu.js"
       ],
-      "css": [
-      ],
+      "css": [],
       "run_at": "document_end"
     },
     {
@@ -34,8 +40,7 @@
         "lib/jquery.min.js",
         "douban.js"
       ],
-      "css": [
-      ],
+      "css": [],
       "run_at": "document_end"
     },
     {
@@ -46,8 +51,7 @@
         "lib/jquery.min.js",
         "fcc-news.js"
       ],
-      "css": [
-      ],
+      "css": [],
       "run_at": "document_end"
     }
   ],
@@ -60,7 +64,9 @@
     "tabs",
     "activeTab",
     "contextMenus",
-    "storage",
+    "storage"
+  ],
+  "host_permissions": [
     "*://*.zhihu.com/*",
     "*://*.douban.com/*",
     "*://*.freecodecamp.org/news/*"
